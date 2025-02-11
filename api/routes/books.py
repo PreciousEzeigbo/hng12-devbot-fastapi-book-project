@@ -72,5 +72,5 @@ async def get_book(book_id: int) -> Book:
     except KeyError:
         return JSONResponse(
             status_code=status.HTTP_404_NOT_FOUND,
-            content={"detail": f"Book with id {book_id} not found"}
+            content={"detail": "Book not found"}
         )
