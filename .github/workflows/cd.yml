@@ -3,7 +3,7 @@ name: Deployment Pipeline
 on:
   push:
     branches:
-      - main  # Triggers when changes are merged into main
+      - main
 
 jobs:
   deploy:
@@ -19,8 +19,18 @@ jobs:
           username: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /home/ubuntu/hng12-devbot-fastapi-book-project 
+            cd /home/ubuntu/hng12-devbot-fastapi-book-project
             git pull origin main
-            source venv/bin/activate  # Ensure venv is activated if used
+            # Install python3-venv if not installed
+            sudo apt-get update
+            sudo apt-get install -y python3-venv
+            # Remove old venv if exists
+            rm -rf venv
+            # Create venv
+            python3 -m venv venv
+            # Activate and install dependencies
+            source venv/bin/activate
+            pip install --upgrade pip
             pip install -r requirements.txt
-            sudo systemctl restart gunicorn
+            # Restart the correct service
+            sudo systemctl restart your-app-service
