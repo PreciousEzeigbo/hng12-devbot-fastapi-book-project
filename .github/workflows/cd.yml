@@ -34,3 +34,4 @@ jobs:
             pip install -r requirements.txt
             # Restart the correct service
             sudo systemctl restart your-app-service
+          timeout: 60s  # Increase the timeout to 60 seconds
