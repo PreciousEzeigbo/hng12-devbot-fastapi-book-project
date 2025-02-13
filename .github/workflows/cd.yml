@@ -39,7 +39,7 @@ jobs:
             pip install -r requirements.txt
 
             # Update NGINX configuration
-            sudo cp /home/ubuntu/hng12-devbot-fastapi-book-project/nginx.conf /etc/nginx/sites-available/yourdomain.com
+            
             sudo ln -sf /etc/nginx/sites-available/yourdomain.com /etc/nginx/sites-enabled/
             sudo nginx -t && sudo systemctl reload nginx
 
